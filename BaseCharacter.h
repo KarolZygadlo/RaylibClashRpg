@@ -12,6 +12,8 @@ public:
     virtual Vector2 getScreenPos() = 0;
     bool getAlive() { return alive; }
     void setAlive(bool isAlive) { alive = isAlive; }
+    float getHealth() const { return health; }
+    void takeDamage(float damage);
 protected:
     Texture2D texture{LoadTexture("characters/knight_idle_spritesheet.png")};
     Texture2D idle{LoadTexture("characters/knight_idle_spritesheet.png")};
@@ -30,6 +32,7 @@ protected:
     float height{};
     float scale{4.0f};
     Vector2 velocity{};
+    float health{100.f};
 private:
     bool alive{true};
 };

@@ -64,12 +64,3 @@ void Character::tick(float deltaTime)
     Rectangle dest{getScreenPos().x + offset.x, getScreenPos().y + offset.y, weapon.width * scale, weapon.height * scale};
     DrawTexturePro(weapon, source, dest, origin, rotation, WHITE);
 }
-
-void Character::takeDamage(float damage)
-{
-    health -= damage;
-    if (health <= 0.f)
-    {
-        setAlive(false);
-    }
-}

@@ -54,3 +54,12 @@ void BaseCharacter::tick(float deltaTime)
     Rectangle dest{getScreenPos().x, getScreenPos().y, scale * width, scale * height};
     DrawTexturePro(texture, source, dest, Vector2{}, 0.f, WHITE);
 }
+
+void BaseCharacter::takeDamage(float damage)
+{
+    health -= damage;
+    if (health <= 0.f)
+    {
+        setAlive(false);
+    }
+}

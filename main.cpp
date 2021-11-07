@@ -7,8 +7,8 @@
 
 int main()
 {
-    const int windowWidth{384};
-    const int windowHeight{384};
+    const int windowWidth{800};
+    const int windowHeight{600};
 
     InitWindow(windowWidth, windowHeight, "RaylibClashRPG");
 
@@ -33,7 +33,8 @@ int main()
 
     Enemy *enemies[]{
         &goblin,
-        &slime};
+        &slime
+    };
 
     for (auto enemy : enemies)
     {
@@ -58,7 +59,7 @@ int main()
 
         if (!knight.getAlive())
         {
-            DrawText("Game Over!", 55.f, 45.f, 40, RED);
+            DrawText("Game Over!", windowWidth/2, windowHeight/2, 40, RED);
             EndDrawing();
             continue;
         }
@@ -66,7 +67,7 @@ int main()
         {
             std::string knightsHealth = "Health: ";
             knightsHealth.append(std::to_string(knight.getHealth()), 0, 5);
-            DrawText(knightsHealth.c_str(), 55.f, 45.f, 40, RED);
+            DrawText(knightsHealth.c_str(), windowWidth - 150, windowHeight - 40, 20, RED);
         }
 
         knight.tick(GetFrameTime());
@@ -95,7 +96,7 @@ int main()
             {
                 if (CheckCollisionRecs(enemy->getCollisionRec(), knight.getWeaponCollisionRec()))
                 {
-                    enemy->setAlive(false);
+                    enemy->takeDamage(knight.returnDamage());
                 }
             }
         }
